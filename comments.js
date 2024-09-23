@@ -1,17 +1,30 @@
-// Create Web Server
-// 1. Import Express
+// Create Web Server 
 const express = require('express');
-// 2. Create an Express Application
 const app = express();
-// 3. Set the Port
-const port = 3000;
-// 4. Create the Routes
-app.get('/', (req, res) => {
-    res.send('Hello World');
+const bodyParser = require('body-parser');
+const fs = require('fs');
+
+// Read comments.json file
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get('/comments', (req, res) => {
+    fs.readFile('comments.json', 'utf8', (err, data) => {
+        res.send(data);
+    });
 });
-// 5. Start the Server
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+
+// Write comments.json file
+app.post('/comments', (req, res) => {
+    fs.readFile('comments.json', 'utf8', (err, data) => {
+        const comments = JSON.parse(data);
+        comments.push(req.body);
+        fs.writeFile('comments.json', JSON.stringify(comments), (err) => {
+            res.send('Comment added');
+        });
+    });
 });
-// 6. Export the Application
-module.exports = app;
+
+app.listen(3000, () => {
+    console.log('Server is running on http://localhost:3000');
+});
