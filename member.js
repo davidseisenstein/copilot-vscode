@@ -1,0 +1,25 @@
+function skillsMember() {
+  return [
+    'JavaScript',
+    'React',
+    'Node',
+    'Express',
+    'MongoDB',
+    'SQL',
+    'HTML',
+    'CSS',
+    'Sass',
+    'Jest',
+    'Git',
+    'Github',
+    'Heroku',
+    'Netlify',
+    'VS Code',
+    'Postman',
+    'Figma',
+    'Photoshop',
+    'Illustrator',
+    'After Effects',
+    'Premiere Pro',
+  ];
+}
